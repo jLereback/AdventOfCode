@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FileReader {
 	public static String getFileAsString(String name) {
-		Path path = Path.of("src/se/aoc/data", name);
+		Path path = Path.of("src/main/data", name);
 
 		String content = null;
 		try {
