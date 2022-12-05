@@ -24,4 +24,23 @@ public class Converter {
 		AtomicInteger counter = new AtomicInteger();
 		return inputList.stream().collect(Collectors.groupingBy(gr -> counter.getAndIncrement() / columnsPerRow)).values();
 	}
+
+	public static List<String> stringToList(String input) {
+		return input.lines().toList();
+	}
+
+	public static byte[][] stringValuesTo2DByteArray(String s){
+		var rows = (int) s.lines().count();
+		var cols = s.lines().findAny().get().length();
+		byte[][] array = new byte[rows][cols];
+		int count = 0;
+		//Fill array
+		for (var line : s.lines().toList()) {
+			for (var height : line.chars().toArray()) {
+				array[count / cols][count % cols] = (byte) Character.getNumericValue(height);
+				count++;
+			}
+		}
+		return array;
+	}
 }
