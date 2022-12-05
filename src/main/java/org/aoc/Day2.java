@@ -58,7 +58,7 @@ public class Day2 {
 	private static boolean isWinner(String oppo, String myMove) {
 		return (oppo.equals(ROCK) && (myMove.equals(MY_PAPER) || myMove.equals(PAPER))) ||
 				(oppo.equals(PAPER) && (myMove.equals(MY_SCISSORS) || myMove.equals(SCISSORS))) ||
-				(oppo.equals(SCISSORS) && (myMove.equals(MY_ROCK)) || myMove.equals(ROCK));
+				(oppo.equals(SCISSORS) && (myMove.equals(MY_ROCK) || myMove.equals(ROCK)));
 	}
 
 	private static boolean isDraw(String oppo, String myMove) {
