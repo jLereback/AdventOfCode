@@ -36,6 +36,17 @@ public class FileReader {
 		return lines.stream().toList();
 	}
 
+	public static String[] getFileAsStringArray(String name, String regex) {
+		String content = null;
+		try {
+			List<String> lines = Files.readLines(getFile(name), StandardCharsets.UTF_8);
+			content = String.join(System.lineSeparator(), lines);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assert content != null;
+		return content.split(regex);
+	}
 	public static List<List<String>> getFileAsListOfListOfString(String name, String regex) {
 		List<String> lines = null;
 		try {

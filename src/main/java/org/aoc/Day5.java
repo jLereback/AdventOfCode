@@ -22,7 +22,6 @@ public class Day5 {
 		part2(crates, commands);
 	}
 
-
 	private static void part1(List<Deque<String>> crates, List<Command> commands) {
 		input.lines().forEach(line -> crates.add(new ArrayDeque<>(singletonList(line))));
 		commands.forEach(c -> c.executor9000(crates));
