@@ -2,53 +2,31 @@ package main.java.org.aoc;
 
 import main.java.org.aoc.tools.FileReader;
 
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.*;
 
 public class Day6 {
 
 	static String input = FileReader.getFileAsString("AoC_Day6.txt");
-	;
 
 	public static void main(String[] args) {
-		input = FileReader.getFileAsString("AoC_Day6.txt");
-		var regex = "[a-z]";
+		//part1 - 4 in row;
+		calculate(4);
 
-		var matcher = Pattern.compile(regex).matcher(input);
+		//part2 - 14 in row;
+		calculate(14);
 
-		System.out.println(matcher);
-		//part1(4, matcher);
-		part11(4, input);
 	}
 
-	private static void part11(int numInRow, String input) {
-		int count = 0;
-		for (int i = 3; i < input.length(); i++) {
-			char ch = input.charAt(i);
-
-
-			for (int j = 0; j < numInRow; j++) {
-				char c = input.charAt(i-j);
-				if (ch == c)
-					System.out.println(c);
+	private static void calculate(int numInRow) {
+		Set<Character> list = new HashSet<>();
+		for (int i = 0; i < input.length()-numInRow; i++) {
+			for (int j = 0; j < numInRow; j++)
+				list.add(input.charAt(i + j));
+			if (list.size() == numInRow) {
+				System.out.println(i+numInRow);
+				break;
 			}
-			count++;
+			list.clear();
 		}
 	}
-
-	private static void part1(int numInRow, Matcher matcher) {
-		for (int i = 0; i < input.length(); i++) {
-			while (matcher.find()) {
-				System.out.println("Full match: " + matcher.group());
-
-
-/*			for (int i = 1; i <= matcher.groupCount(); i++) {
-				System.out.println("Group " + i + ": " + matcher.group(i));
-			}*/
-			}
-		}
-	}
-
-
 }
