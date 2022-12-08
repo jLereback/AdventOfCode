@@ -29,15 +29,15 @@ public class Converter {
 		return input.lines().toList();
 	}
 
-	public static byte[][] stringValuesTo2DByteArray(String s){
+	public static int[][] stringValuesTo2DIntArray(String s){
 		var rows = (int) s.lines().count();
 		var cols = s.lines().findAny().get().length();
-		byte[][] array = new byte[rows][cols];
+		int[][] array = new int[rows][cols];
 		int count = 0;
 		//Fill array
 		for (var line : s.lines().toList()) {
 			for (var height : line.chars().toArray()) {
-				array[count / cols][count % cols] = (byte) Character.getNumericValue(height);
+				array[count / cols][count % cols] = Character.getNumericValue(height);
 				count++;
 			}
 		}
