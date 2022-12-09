@@ -43,4 +43,20 @@ public class Converter {
 		}
 		return array;
 	}
+
+
+	public static char[][] stringValuesTo2DCharArray(String s){
+		var rows = (int) s.lines().count();
+		var cols = s.lines().findAny().get().length();
+		char[][] array = new char[rows][cols];
+		int count = 0;
+		//Fill array
+		for (var line : s.lines().toList()) {
+			for (var height : line.chars().toArray()) {
+				array[count / cols][count % cols] = (char) Character.getNumericValue(height);
+				count++;
+			}
+		}
+		return array;
+	}
 }

@@ -147,7 +147,7 @@ public class Day8 {
 		int count = 0;
 		if (isEqual(column, MAX_COLUMN)) return count;
 		int i;
-		for (i = column + 1; i < TOTAL_COLUMNS-1; i++)
+		for (i = column + 1; i < TOTAL_COLUMNS - 1; i++)
 			if (GRID[row][i] < GRID[row][column]) count++;
 			else break;
 		return count + (i < TOTAL_COLUMNS ? 1 : 0);
