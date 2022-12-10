@@ -4,9 +4,9 @@ import main.java.org.aoc.tools.FileReader;
 
 import java.util.*;
 
-public class Day6 {
+public class Day06 {
 
-	static String input = FileReader.getFileAsString("AoC_Day6.txt");
+	static String input = FileReader.getFileAsString("AoC_Day06.txt");
 
 	public static void main(String[] args) {
 		//part1 - 4 in row;

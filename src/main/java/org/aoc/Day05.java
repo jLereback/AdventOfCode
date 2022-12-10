@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 
 import static java.util.Collections.singletonList;
 
-public class Day5 {
-	public static List<Command> commands = FileReader.getFileAsString("AoC_Day5.txt").lines()
+public class Day05 {
+	public static List<Command> commands = FileReader.getFileAsString("AoC_Day05.txt").lines()
 			.map(Command::parse).toList();
-	static String input = FileReader.getFileAsString("AoC_Day5_2.txt");
+	static String input = FileReader.getFileAsString("AoC_Day5_02.txt");
 
 	public static void main(String[] args) {
 		List<Deque<String>> crates = new ArrayList<>();

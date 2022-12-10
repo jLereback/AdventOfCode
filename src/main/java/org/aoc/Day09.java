@@ -5,9 +5,9 @@ import main.java.org.aoc.tools.FileReader;
 import java.util.HashSet;
 import java.util.List;
 
-public class Day9 {
+public class Day09 {
 
-	static String INPUT = FileReader.getFileAsString("AoC_Day9.txt");
+	static String INPUT = FileReader.getFileAsString("AoC_Day09.txt");
 
 
 	public static void main(String[] args) {

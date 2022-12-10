@@ -8,9 +8,9 @@ import java.util.Set;
 import java.util.function.BinaryOperator;
 import java.util.stream.IntStream;
 
-public class Day3 {
+public class Day03 {
 	public static void main(String[] args) {
-		String input = FileReader.getFileAsString("AoC_Day3.txt");
+		String input = FileReader.getFileAsString("AoC_Day03.txt");
 
 		System.out.println(solution1(input));
 		System.out.println(solution2(input));
@@ -18,8 +18,8 @@ public class Day3 {
 
 	private static int solution1(String input) {
 		return input.lines()
-				.map(Day3::commonCharsInLine)
-				.mapToInt(chars -> chars.stream().mapToInt(Day3::convertCharToInt).sum())
+				.map(Day03::commonCharsInLine)
+				.mapToInt(chars -> chars.stream().mapToInt(Day03::convertCharToInt).sum())
 				.sum();
 	}
 
@@ -40,13 +40,13 @@ public class Day3 {
 		var lines = input.lines().toList();
 		return IntStream.iterate(0, i -> i < lines.size(), i -> i + 3)
 				.mapToObj(i -> getCommonCharInLines(lines.get(i), lines.get(i + 1), lines.get(i + 2)))
-				.mapToInt(chars -> chars.stream().mapToInt(Day3::convertCharToInt).sum())
+				.mapToInt(chars -> chars.stream().mapToInt(Day03::convertCharToInt).sum())
 				.sum();
 	}
 
 	private static Set<Character> getCommonCharInLines(String... lines) {
 		return Arrays.stream(lines)
-				.map(Day3::toSet)
+				.map(Day03::toSet)
 				.reduce(getReducedCharSet()).get();
 	}
 

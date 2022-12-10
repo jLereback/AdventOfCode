@@ -2,7 +2,7 @@ package main.java.org.aoc;
 
 import java.util.Arrays;
 
-public class Day1 {
+public class Day01 {
 	public static void main(String[] args) {
 		String cal = getCal();
 

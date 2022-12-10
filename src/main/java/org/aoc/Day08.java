@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 import static java.lang.Integer.*;
 
-public class Day8 {
-	static String INPUT = FileReader.getFileAsString("AoC_Day8.txt");
+public class Day08 {
+	static String INPUT = FileReader.getFileAsString("AoC_Day08.txt");
 	static int[][] GRID = Converter.stringValuesTo2DIntArray(INPUT);
 	static int TOTAL_ROWS = (int) INPUT.lines().count();
 	static int MAX_ROW = TOTAL_ROWS - 1;

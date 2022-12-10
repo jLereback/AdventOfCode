@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Day7 {
+public class Day07 {
 	static final int LIMIT = 100000;
 	static final int DISC_SIZE = 70000000;
 	static final int NEED_SPACE = 30000000;
-	static List<String> INPUT = FileReader.getFileAsList("AoC_Day7.txt");
+	static List<String> INPUT = FileReader.getFileAsList("AoC_Day07.txt");
 
 
 	public static void main(String[] args) {
@@ -43,15 +43,13 @@ public class Day7 {
 	}
 
 	private static FSElement readLines(FSElement current, String line) {
-		if (line.startsWith("$ cd")) {
+		if (line.startsWith("$ cd"))
 			current = changeDir(current, line);
-		} else if (line.equals("$ ls")) {
-
-		} else if (line.startsWith("dir ")) {
+		else if (line.equals("$ ls")) {}
+		else if (line.startsWith("dir "))
 			readDir(current, line);
-		} else {
+		else
 			readFile(current, line);
-		}
 		return current;
 	}
 

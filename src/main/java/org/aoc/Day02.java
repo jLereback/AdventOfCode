@@ -5,7 +5,7 @@ import main.java.org.aoc.tools.FileReader;
 import java.util.Arrays;
 import java.util.List;
 
-public class Day2 {
+public class Day02 {
 	public static final String ROCK = "A", PAPER = "B", SCISSORS = "C";
 	public static final String MY_ROCK = "X", MY_PAPER = "Y", MY_SCISSORS = "Z";
 	public static final String LOSE = "X", DRAW = "Y";
@@ -15,7 +15,7 @@ public class Day2 {
 
 	public static void main(String[] args) {
 		encryptedGuide = Arrays.stream(
-				FileReader.getFileAsString("AoC_Day2.txt").split("\\n")).toList();
+				FileReader.getFileAsString("AoC_Day02.txt").split("\\n")).toList();
 		System.out.println(getExpectedScore());
 		System.out.println(getIntendedScore());
 	}
