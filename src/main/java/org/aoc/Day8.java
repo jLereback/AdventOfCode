@@ -20,7 +20,7 @@ public class Day8 {
 		System.out.println(part2());
 	}
 
-	public static int part1() {
+	private static int part1() {
 		boolean[][] visibility = getBooleanArray();
 		for (int i = 0; i < TOTAL_ROWS; i++)
 			checkVisibilityForRow(visibility, i);
@@ -29,7 +29,7 @@ public class Day8 {
 		return checkVisibility(visibility);
 	}
 
-	public static int part2() {
+	private static int part2() {
 		int max = 0;
 		for (int i = 0; i < TOTAL_ROWS; i++) {
 			for (int j = 0; j < TOTAL_COLUMNS; j++) {
