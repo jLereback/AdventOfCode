@@ -5,74 +5,53 @@ import main.java.org.aoc.tools.FileReader;
 import java.util.List;
 
 public class Day10 {
-	static List<String> LIST_INPUT = FileReader.getFileAsList("AoC_Day10.txt");
-	static List<String[]> INPUT = LIST_INPUT.stream().map(line -> line.split(" ")).toList();
+	static List<String[]> INPUT = FileReader.getFileAsList("AoC_Day10.txt")
+			.stream().map(line -> line.split(" ")).toList();
 	static List<Integer> STOPS = List.of(20, 60, 100, 140, 180, 220);
-	static int ROW = 6;
 	static int WIDTH = 40;
-	static int x1 = 1;
-	static int x2 = 1;
+	static int cycle = 0;
+	static int x = 1;
+	static int position = 1;
 	static int signal = 0;
 
 	public static void main(String[] args) {
-		System.out.println(INPUT);
-		System.out.println(STOPS.toString());
-
-		System.out.println(part1());
-		part2();
+		part1();
 	}
 
-	private static int part1() {
-		int cycle = 0;
+	private static void part1() {
 		for (String[] line : INPUT)
-			cycle = checkCycle(cycle, line);
-		return signal;
+			checkCycle(line);
+		System.out.println("Part1: " + signal);
 	}
 
-	private static int checkCycle(int cycle, String[] line) {
+	private static void checkCycle(String[] line) {
 		if (line[0].equals("noop"))
-			cycle = checkSignal(cycle);
+			checkSignal(line);
 		else if (line[0].contains("addx"))
-			cycle = checkSignalAndX(line, cycle);
-		return cycle;
+			checkSignalAndX(line);
 	}
 
-	private static int checkSignal(int cycle) {
+	private static void checkSignal(String[] line) {
 		cycle++;
+		part2(line);
 		if (STOPS.contains(cycle))
-			signal += cycle * x1;
-		return cycle;
+			signal += cycle * x;
 	}
 
-	private static int checkSignalAndX(String[] line, int cycle) {
-		cycle = checkSignal(cycle);
-		cycle = checkSignal(cycle);
-		x1 += Integer.parseInt(line[1]);
-		return cycle;
+	private static void checkSignalAndX(String[] line) {
+		checkSignal(line);
+		checkSignal(line);
+		x += Integer.parseInt(line[1]);
 	}
 
-
-	private static void part2() {
-		int cycle = 0;
-
-		if (cycle%40 == 0 ) {
-
-		}
-
-		for (int i = 0; i < ROW; i++) {
-			for (int j = 0; j < WIDTH; j++) {
-
-			}
-
-/*
-
-			if (line[0].equals("noop"))
-				checkSignal(cycle);
-			else if (line[0].contains("addx"))
-				checkSignalAndX(line, cycle);
-*/
-
-		}
-
+	private static void part2(String[] line) {
+		if (cycle % WIDTH == 0)
+			System.out.println();
+		else if (cycle % WIDTH == position || cycle % WIDTH == position - 1 || cycle % WIDTH == position + 1)
+		System.out.print(" #");
+        else
+		System.out.print("  ");
+		if (line.length == 2)
+			position  = (x + Integer.parseInt(line[1])) % WIDTH;
 	}
 }
