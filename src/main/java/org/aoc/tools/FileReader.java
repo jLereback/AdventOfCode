@@ -20,14 +20,14 @@ public class FileReader {
 		return path.toFile();
 	}
 
-	public static String getFileAsString(String input) {
+	public static String getFileAsString(String fileName) {
 		String content = null;
 		List<String> lines;
 		try {
-			if (input.contains("AoC"))
-				lines = Files.readLines(getFile(input), StandardCharsets.UTF_8);
+			if (fileName.contains("AoC"))
+				lines = Files.readLines(getFile(fileName), StandardCharsets.UTF_8);
 			else
-				lines = Files.readLines(getFileWithDay(input), StandardCharsets.UTF_8);
+				lines = Files.readLines(getFileWithDay(fileName), StandardCharsets.UTF_8);
 			content = String.join(System.lineSeparator(), lines);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -35,13 +35,13 @@ public class FileReader {
 		return content;
 	}
 
-	public static List<String> getFileAsList(String input) {
+	public static List<String> getFileAsList(String fileName) {
 		List<String> lines = null;
 		try {
-			if (input.contains("AoC"))
-				lines = Files.readLines(getFile(input), StandardCharsets.UTF_8);
+			if (fileName.contains("AoC"))
+				lines = Files.readLines(getFile(fileName), StandardCharsets.UTF_8);
 			else
-				lines = Files.readLines(getFileWithDay(input), StandardCharsets.UTF_8);
+				lines = Files.readLines(getFileWithDay(fileName), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,14 +49,14 @@ public class FileReader {
 		return lines.stream().toList();
 	}
 
-	public static String[] getFileAsStringArray(String input, String regex) {
+	public static String[] getFileAsStringArray(String fileName, String regex) {
 		String content = null;
 		List<String> lines;
 		try {
-			if (input.contains("AoC"))
-				lines = Files.readLines(getFile(input), StandardCharsets.UTF_8);
+			if (fileName.contains("AoC"))
+				lines = Files.readLines(getFile(fileName), StandardCharsets.UTF_8);
 			else
-				lines = Files.readLines(getFileWithDay(input), StandardCharsets.UTF_8);
+				lines = Files.readLines(getFileWithDay(fileName), StandardCharsets.UTF_8);
 			content = String.join(System.lineSeparator(), lines);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -65,17 +65,31 @@ public class FileReader {
 		return content.split(regex);
 	}
 
-	public static List<List<String>> getFileAsListOfListOfString(String input, String regex) {
+	public static List<List<String>> getFileAsListOfListOfString(String fileName, String regex) {
 		List<String> lines = null;
 		try {
-			if (input.contains("AoC"))
-				lines = Files.readLines(getFile(input), StandardCharsets.UTF_8);
+			if (fileName.contains("AoC"))
+				lines = Files.readLines(getFile(fileName), StandardCharsets.UTF_8);
 			else
-				lines = Files.readLines(getFileWithDay(input), StandardCharsets.UTF_8);
+				lines = Files.readLines(getFileWithDay(fileName), StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		assert lines != null;
 		return lines.stream().map(list -> Arrays.stream(list.split(regex)).toList()).toList();
+	}
+
+	public static List<String[]> getFileAsListOfStringArray(String fileName, String regex) {
+		List<String> lines = null;
+		try {
+			if (fileName.contains("AoC"))
+				lines = Files.readLines(getFile(fileName), StandardCharsets.UTF_8);
+			else
+				lines = Files.readLines(getFileWithDay(fileName), StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assert lines != null;
+		return lines.stream().toList().stream().map(line -> line.split(regex)).toList();
 	}
 }
