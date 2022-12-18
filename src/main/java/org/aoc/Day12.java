@@ -1,6 +1,7 @@
 package main.java.org.aoc;
 
 import main.java.org.aoc.tools.FileReader;
+import main.java.org.aoc.tools.Util.Position;
 
 import java.util.*;
 import java.util.List;
@@ -8,16 +9,16 @@ import java.util.List;
 
 public class Day12 {
 	static List<String> terrain = FileReader.getFileAsList("12");
-	public static Map<Point, Integer> trail = new HashMap<>();
+	public static Map<Position, Integer> trail = new HashMap<>();
 
 
 	public static void main(String[] args) {
-		Point start = null;
-		Point end = null;
+		Position start = null;
+		Position end = null;
 		for (int row = 0; row < terrain.size(); row++) {
 			String line = terrain.get(row);
 			for (int column = 0; column < line.length(); column++) {
-				Point p = new Point(row, column);
+				Position p = new Position(row, column);
 				char c = line.charAt(column);
 				if (c == 'S') {
 					start = p;
@@ -33,26 +34,26 @@ public class Day12 {
 		System.out.println(floodFill(start, end, "Part2"));
 	}
 
-	public static Integer floodFill(Point start, Point end, String part) {
-		Map<Point, Integer> bestTrail = new HashMap<>();
+	public static Integer floodFill(Position start, Position end, String part) {
+		Map<Position, Integer> bestTrail = new HashMap<>();
 		bestTrail.put(start, 0);
-		List<Point> queue = new ArrayList<>();
+		List<Position> queue = new ArrayList<>();
 		queue.add(start);
 		while (queue.size() > 0) {
-			Point point = queue.remove(0);
-			if (point.row() != 0)
-				checkPoint(point, new Point(point.row() - 1, point.column()), bestTrail, queue, part);
-			if (point.row() != terrain.size() - 1)
-				checkPoint(point, new Point(point.row() + 1, point.column()), bestTrail, queue, part);
-			if (point.column() != 0)
-				checkPoint(point, new Point(point.row(), point.column() - 1), bestTrail, queue, part);
-			if (point.column() != terrain.get(0).length() - 1)
-				checkPoint(point, new Point(point.row(), point.column() + 1), bestTrail, queue, part);
+			Position PointGrid = queue.remove(0);
+			if (PointGrid.row() != 0)
+				checkPointGrid(PointGrid, new Position(PointGrid.row() - 1, PointGrid.col()), bestTrail, queue, part);
+			if (PointGrid.row() != terrain.size() - 1)
+				checkPointGrid(PointGrid, new Position(PointGrid.row() + 1, PointGrid.col()), bestTrail, queue, part);
+			if (PointGrid.col() != 0)
+				checkPointGrid(PointGrid, new Position(PointGrid.row(), PointGrid.col() - 1), bestTrail, queue, part);
+			if (PointGrid.col() != terrain.get(0).length() - 1)
+				checkPointGrid(PointGrid, new Position(PointGrid.row(), PointGrid.col() + 1), bestTrail, queue, part);
 		}
 		return bestTrail.get(end);
 	}
 
-	public static void checkPoint(Point p, Point direction, Map<Point, Integer> bestTrail, List<Point> queue, String part) {
+	public static void checkPointGrid(Position p, Position direction, Map<Position, Integer> bestTrail, List<Position> queue, String part) {
 		int gridHeight = trail.get(direction);
 		if (gridHeight - trail.get(p) <= 1) {
 			int pathLen = bestTrail.get(p) + 1;
@@ -73,8 +74,5 @@ public class Day12 {
 					bestTrail.put(direction, pathLen);
 			}
 		}
-	}
-
-	record Point(int row, int column) {
 	}
 }

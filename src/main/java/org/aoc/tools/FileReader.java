@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class FileReader {
 	private static File getFile(String name) {
@@ -91,5 +93,19 @@ public class FileReader {
 		}
 		assert lines != null;
 		return lines.stream().toList().stream().map(line -> line.split(regex)).toList();
+	}
+
+	public static List<int[]> getFileAsListOfIntArray(String fileName, String regex) {
+		List<String> lines = null;
+		try {
+			if (fileName.contains("AoC"))
+				lines = Files.readLines(getFile(fileName), StandardCharsets.UTF_8);
+			else
+				lines = Files.readLines(getFileWithDay(fileName), StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assert lines != null;
+		return lines.stream().toList().stream().map(line -> Arrays.stream(line.split(regex)).mapToInt(Integer::parseInt).toArray()).toList();
 	}
 }
